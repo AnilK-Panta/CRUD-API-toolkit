@@ -21,13 +21,37 @@ export const postApi = createApi({
         };
       },
     }),
-    // posts?_limit=5
+
     getPostByLimit: builder.query({
       query: (num) => {
         console.log("Post Limit: ", num);
         return {
           url: `/posts?_limit=${num}`,
           method: "GET",
+        };
+      },
+    }),
+
+    deletePost: builder.mutation({
+      query: (id) => {
+        console.log("Deleted Id: ", id);
+        return {
+          url: `/posts/${id}`,
+          method: "DELETE",
+        };
+      },
+    }),
+
+    createPost: builder.mutation({
+      query: (newPost) => {
+        console.log("Created Post: ", newPost);
+        return {
+          url: "posts",
+          method: "POST",
+          body: newPost,
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
         };
       },
     }),
@@ -38,4 +62,6 @@ export const {
   useGetAllPostQuery,
   useGetPostByIdQuery,
   useGetPostByLimitQuery,
+  useDeletePostMutation,
+  useCreatePostMutation,
 } = postApi;
