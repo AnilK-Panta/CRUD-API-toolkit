@@ -12,7 +12,13 @@ export const postApi = createApi({
         method: "GET",
       }),
     }),
+    getPostById: builder.query({
+      query: (id) => ({
+        url: `/posts/${id}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useGetAllPostQuery } = postApi;
+export const { useGetAllPostQuery, useGetPostByIdQuery } = postApi;
