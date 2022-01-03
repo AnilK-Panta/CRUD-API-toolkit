@@ -13,12 +13,29 @@ export const postApi = createApi({
       }),
     }),
     getPostById: builder.query({
-      query: (id) => ({
-        url: `/posts/${id}`,
-        method: "GET",
-      }),
+      query: (id) => {
+        console.log("Post Id: ", id);
+        return {
+          url: `/posts/${id}`,
+          method: "GET",
+        };
+      },
+    }),
+    // posts?_limit=5
+    getPostByLimit: builder.query({
+      query: (num) => {
+        console.log("Post Limit: ", num);
+        return {
+          url: `/posts?_limit=${num}`,
+          method: "GET",
+        };
+      },
     }),
   }),
 });
 
-export const { useGetAllPostQuery, useGetPostByIdQuery } = postApi;
+export const {
+  useGetAllPostQuery,
+  useGetPostByIdQuery,
+  useGetPostByLimitQuery,
+} = postApi;
