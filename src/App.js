@@ -15,7 +15,12 @@ function App() {
   // const data = useGetPostByLimitQuery(5);
   // const [detetePost, responseInfo] = useDeletePostMutation();
   const [createPost, responseInfo] = useCreatePostMutation();
-  console.log(createPost);
+  console.log(responseInfo.data);
+  const newPost = {
+    title: "foo",
+    body: "bar",
+    userId: 1,
+  };
   console.log(responseInfo.isSuccess);
   if (responseInfo.isLoading) return <div>Loading ....</div>;
   if (responseInfo.isError) return <div>Unexpected error occured</div>;
@@ -94,7 +99,7 @@ function App() {
       <h1>Create Post</h1>
       <button
         onClick={() => {
-          createPost();
+          createPost(newPost);
         }}
       >
         Create Post
