@@ -6,6 +6,7 @@ import {
   useGetPostByLimitQuery,
   useDeletePostMutation,
   useCreatePostMutation,
+  useUpdatePostMutation,
 } from "./services/post";
 
 function App() {
@@ -14,9 +15,13 @@ function App() {
   // const data = useGetPostByIdQuery(5);
   // const data = useGetPostByLimitQuery(5);
   // const [detetePost, responseInfo] = useDeletePostMutation();
-  const [createPost, responseInfo] = useCreatePostMutation();
-  console.log(responseInfo.data);
-  const newPost = {
+  // const [createPost, responseInfo] = useCreatePostMutation();
+  const [updatePost, responseInfo] = useUpdatePostMutation();
+
+  console.log(responseInfo);
+  console.log(updatePost);
+  const updatedPostData = {
+    id: 1,
     title: "foo",
     body: "bar",
     userId: 1,
@@ -94,15 +99,30 @@ function App() {
   //   </div>
   // );
 
+  // Create New Post
+  // return (
+  //   <div className="App">
+  //     <h1>Create Post</h1>
+  //     <button
+  //       onClick={() => {
+  //         createPost(newPost);
+  //       }}
+  //     >
+  //       Create Post
+  //     </button>
+  //   </div>
+  // );
+
+  // Update Post
   return (
     <div className="App">
-      <h1>Create Post</h1>
+      <h1>Update Post</h1>
       <button
         onClick={() => {
-          createPost(newPost);
+          updatePost(updatedPostData);
         }}
       >
-        Create Post
+        Update Post
       </button>
     </div>
   );
